@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import mapboxgl from "mapbox-gl";
 import LoadDistrictStatus from "../utility/LoadDistrictStatus";
+import PumPuiLegend from "./PumPuiLegend";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoibm9lbHRlY2giLCJhIjoiY2o1dXByYjYxMXJmMTJ3bWxjZXo5YzkydCJ9.ic11CV05aSv7rYdx22nSDw";
@@ -27,6 +28,7 @@ export default function Mapbox(props) {
     setMap(map);
     map.on("load", () => {
       // Load the PUMand PUI status per district
+      map.resize();
       LoadDistrictStatus(map, "pui");
       LoadDistrictStatus(map, "pum");
     });
@@ -43,16 +45,23 @@ export default function Mapbox(props) {
   }, [props.district]);
 
   return (
-    <React.Fragment>
-      <Wrapper ref={(el) => (mapContainer.current = el)} />
-    </React.Fragment>
+    <Wrapper>
+      <Map ref={(el) => (mapContainer.current = el)} />
+      <PumPuiLegend />
+    </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
-  height: 94vh;
+const Map = styled.div`
+  height: 100%;
   width: 100%;
-  @media (max-width: 360px) {
+`;
+
+const Wrapper = styled.div`
+  position: relative;
+  height: 777px;
+  width: 100%;
+  @media (max-width: 660px) {
     height: 80vh;
   }
 `;

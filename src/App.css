@@ -39,7 +39,7 @@
 }
 
 .HorizontalSpacer {
-  height: 3rem;
+  height: 1rem;
 }
 
 .SidePanelSpacer {
@@ -65,7 +65,19 @@
   margin-right: 30px;
 }
 
-.scrollableList {
-  overflow: auto;
-  height: 40vh;
+/* .scrollableList {
+  margin-bottom: 50px;
+} */
+
+.FlexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 812px;
+}
+.FlexContent {
+  flex: 1 0 auto;
+}
+.FlexFooter {
+  flex-shrink: 0;
 }
